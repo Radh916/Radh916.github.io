@@ -1,0 +1,33 @@
+.recent-birthdays-widget {
+	display: none;
+	padding-bottom: 30px;
+}
+.ajax_loader_recent_birthdays {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: none;
+    color: #ffba00;
+}
+.ajax_loader_recent_birthdays i {
+    position:absolute;    
+    left: 48%;
+    top: 40%;
+}
+.recent-birthdays-widget-details {
+    border: solid 2px white;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+.recent-birthdays-widget-details h5{text-align: center; color: #fff; margin: 0; font-weight: 300; padding-bottom: 10px;}
+.recent-birthdays-widget-details div{text-align: center; color: #fff; margin: 0; font-weight: 300; line-height: 24px;}
+.recent-birthdays-widget-details div span{text-align: center; color: #ffba00; margin: 0; font-weight: 300;}
+.recent-birthdays-widget-details a{color: #ffba00; text-decoration: none;}
+.recent-birthdays-widget-details a:hover{text-decoration: none; color: #71a8f2;}
+.recent-birthdays-widget-details .hr-line {padding-bottom: 10px;}
+.recent-birthdays-widget-details .todays_highlight {font-size: 17px; line-height: 27px;}
+.recent-birthdays-widget-details .todays_tithi_highlight {font-size: 25px; line-height: 28px;}
+

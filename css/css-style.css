@@ -1,0 +1,431 @@
+@charset "utf-8";
+
+/*
+------------------------------------------------------------
+Project Name : Janmatithi;
+------------------------------------------------------------
+*/
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+/* General 
+--------------------------------------------------------------------------------------------------------*/
+*, *:focus{
+	outline: none; 
+	border-radius: 0; 
+	-o-border-radius: 0; 
+	-ms-border-radius: 0; 
+	-moz-border-radius: 0; 
+	-webkit-border-radius: 0;
+	box-shadow: none;
+	-o-box-shadow: none;
+	-ms-box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+a, .submit-btn, .submit-btn:before{
+	transition: all 0.3s;
+	-o-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+}
+
+html, body{max-width: 100%;
+    overflow-x: hidden;;}
+body{font-size:14px; line-height:1.4em; font-family: 'Montserrat', sans-serif; font-weight: 600;}
+
+.wrapper{min-height: 100%;}
+.content-wrapper{max-width: 980px; margin: 0 auto;}
+li a{color: #ffba00};
+li a:hover{}
+a{color: #1e559e; text-decoration: none;}
+a:hover{text-decoration: none; color: #71a8f2;}
+.hr-line{border:0; border-top: solid 1px #999;}
+
+
+h1, h2, h3, h4, h5, h6{line-height: 1.2em; padding: 0 0 30px; margin: 0;}
+h1 span, h2 span, h3 span, h5 span, h6 span{display: block; font-size: 0.5em; line-height: 1.2em;}
+h1{font-size: 3em;}
+h2{font-size: 2.85em;}
+h3{font-size: 2.1em;}
+h4{font-size: 1.5em;}
+h5{font-size: 1.4em;}
+h6{font-size: 1.07em;}
+
+p{padding: 0 0 30px; margin: 0;}
+p a{color: #1e559e;}
+p a:hover{color: #71a8f2;}
+p b{font-weight: bold;}
+p i{font-style: italic;}
+p u{text-decoration: underline;}
+p span{display: block; padding-bottom: 10px;}
+p .small-text{font-size: 0.9em;}
+
+
+
+/* Header
+--------------------------------------------------------------------------------------------------------*/
+.wrapper{padding: 0 0 50px;}
+.inner-page.wrapper{padding: 0 0 0;}
+#header{max-height: 130px; background: #000000;}
+.logo{padding: 30px 0; display: inline-block;}
+.logo img{width: 100%;}
+
+
+.header-right{text-align: right; padding-top: 30px; padding-bottom: 10px;}
+.header-right .sharetext {display: inline-block; color: #6e839f; line-height: 20px;}
+
+
+/* Banner
+--------------------------------------------------------------------------------------------------------*/
+.banner{background-image: url(../images/grhero.jpg);  center center no-repeat; -webkit-background-size: cover; background-size: cover; padding: 20px 0;}
+.banner-heading{text-align: center; color: #fff; padding-bottom: 40px;}
+.banner-heading span{padding-top: 20px;}
+
+
+.banner-form .form-group{margin-bottom: 10px;}
+.banner-form label{text-align: right; line-height: 42px; color: #fff; margin: 0; font-weight: 300;}
+.banner-form input[type="text"]{width: 100%; padding: 13px; height: auto; box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; color: #5b5b5b; border: 0;}
+.banner-form .time_group{padding: 13px; height: auto; box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; color: #5b5b5b; border: 0;}
+.submit-btn{ background: #ffba00; border: 0; box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; text-shadow: none; color: #fff; text-transform: uppercase; height: 49px; font-size: 1.3em; position: relative; overflow: hidden;}
+.submit-btn:before{content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: #fff; z-index: 1;}
+.submit-btn:hover{color: #2e67b2;}
+.submit-btn:hover:before{width: 100%;}
+.submit-btn span{position: relative; z-index: 2;}
+.banner-form ::-webkit-input-placeholder {
+	color: #5b5b5b;
+}
+.banner-form .error{background: #ffcaca;}
+
+.banner-form :-moz-placeholder { /* Firefox 18- */
+	color: #5b5b5b;  
+}
+
+.banner-form ::-moz-placeholder {  /* Firefox 19+ */
+	color: #5b5b5b;  
+}
+
+.banner-form :-ms-input-placeholder {  
+	color: #5b5b5b;  
+}
+
+
+/* Jumbotron
+--------------------------------------------------------------------------------------------------------*/
+.jumbotron{text-align: center; color: #414141; padding: 30px 0;}
+.jumbotron h4{padding: 0;}
+.jumbotron h4 span{display: block; padding-bottom: 15px;color: #1e559e;}
+.jumbotron h4 a:hover{color: gold;}
+
+
+/* Main Content
+--------------------------------------------------------------------------------------------------------*/
+.about-content h2{color: #444444;}
+.about-content p{color: #414141; font-size: 1.28em; line-height: 1.5em;} 
+.page-link{font-size: 1.28em; line-height: 1.5em;}
+
+
+/* Inner Page
+--------------------------------------------------------------------------------------------------------*/
+.inner-page .banner{text-align: center;}
+.inner-page .banner-heading em{color: #ffba00;}
+.inner-page .banner ul li{color: #ffba00; font-size: 3.14em; line-height: 1.2em; padding-bottom: 20px;}
+.inner-page .banner ul li.last{padding-bottom: 0;}
+.inner-page .banner ul li span{display: block; color: #fff; font-size: 0.39em; line-height: 1em; padding-bottom: 10px;}
+
+.festivals{padding: 30px 0; color: #414141;}
+.festivals h3{text-align: center; color: #444444;}
+.festivals ul li{font-size: 1.28em; line-height: 1.2em;  padding-bottom: 20px;}
+.festivals ul li.last{padding-bottom: 0;}
+.festivals ul li span{color: #1e559e;}
+.festivals .btn{ background: none; border: solid 1px #1e559e; box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; text-shadow: none; text-transform: uppercase; height: 49px; font-size: 1.2em; font-weight: 700; position: relative; overflow: hidden; color: #1e559e; padding: 0 30px; line-height:49px;} 
+.festivals .btn:hover{background: #1e559e; color: #fff;}
+.add-to-calendar{ background: #ffba00; border: solid 1px #ffba00; box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; text-shadow: none; height: 49px; font-size: 1.3em; font-weight: 700; position: relative; overflow: hidden; color: #fff; padding: 0 30px; line-height:49px;} 
+.add-to-calendar:hover{background: #fff; color: #ffba00;}
+
+.timings{background: #f3f7fd; padding: 60px 0;}
+.timings h2, .timings h5{color: #444444;}
+.timing-list li{font-size: 1.2em; line-height: 1.2em; color: #414141; padding-bottom: 30px;}
+.timing-list.bottom li{padding-bottom: 5px;}
+.timings h2 em, .timing-list li span{color: #1e559e;}
+.timings .timing-calc{display: block; text-align: center; font-size: 1.35em; line-height: 1.2em; padding: 40px 0 0;}
+
+.inner-page .about-content{padding: 60px 0;}
+
+
+
+/* Socail Icons
+--------------------------------------------------------------------------------------------------------*/
+.default-listing li{padding-bottom: 10px;}
+.default-listing li a{display: inline-block; padding-left: 30px; font-size: 1.28em; line-height: 1.5em; background: url(../images/images-right-icon.png) 0 5px no-repeat;}
+
+
+/* Socail Icons
+--------------------------------------------------------------------------------------------------------*/
+.social-icons{float: right;}
+.social-icons li{float: left; padding: 0 0 0 12px;}
+.social-icons li a{display: block; text-align: center; width: 20px; height: 42px; line-height: 42px; font-size: 25px; color: #fff; border-radius: 55px; -moz-border-radius: 55px; -webkit-border-radius: 55px;}
+.social-icons li a:hover{background: none; color: #797e84;}
+
+
+/* Footer
+--------------------------------------------------------------------------------------------------------*/
+#footer{background: #779e84; padding: 50px 0; position: relative; /* Give Footer height to margin top */}
+#footer article h3{color: #fff;}
+#footer article p{color: #fff; font-size: 1.2em; line-height: 1.2em; padding: 0 0 10px;}
+#footer article p span em{color: #ffba00; font-size: 1.25em;}
+#footer input[type="text"]{padding: 13px; height: auto; box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; color: #5b5b5b; border: 0; width: 100%;}
+#footer .submit-btn{font-weight: 700; padding-left: 30px; padding-right: 30px;}
+.captcha img{width: 100%;}
+#tooltip
+{
+    text-align: center;
+    color: #fff;
+    background: #111;
+    position: absolute;
+    z-index: 100;
+    padding: 15px;
+}
+#tooltip:after /* triangle decoration */
+{
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #111;
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    margin-left: -10px;
+}
+#tooltip.top:after
+{
+    border-top-color: transparent;
+    border-bottom: 10px solid #111;
+    top: -20px;
+    bottom: auto;
+}
+#tooltip.left:after
+{
+    left: 10px;
+    margin: 0;
+}
+#tooltip.right:after
+{
+    right: 10px;
+    left: auto;
+    margin: 0;
+}
+.g-signin2 {
+    float: right;
+}
+.spacer5 {
+  height: 10px;
+}
+.login-message {
+    display: inline-block; 
+    color: #6e839f; 
+    line-height: 20px;
+}
+.nearby-festivals-div {
+    display: none;
+}
+.nearby-birthdays-div {
+    display: none; 
+}
+.nearby-div {
+    display: none;
+    font-size: 15px;
+}
+.nearby-div div:not(:last-child){
+    padding-bottom: 15px;
+}
+.more-nearby-birthdays {
+    display: none;
+}
+.dispNaksh {
+    display: none;
+}
+.dispRashi {
+    display: none;   
+}
+.dispByear {
+    display: none;
+}
+.banner-heading {
+    display: none;
+}
+.ajax_loader{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: none;
+    color: #ffba00;
+}
+.ajax_loader i {
+    position:absolute;    
+    left: 48%;
+    top: 40%;
+}
+.birthdays-label {
+    display: inline-block;
+}
+.glyphicon.glyphicon-plus {
+    font-size: 20px;
+    background: #ffba00;
+    color: #1e559e;
+    width: 20px;    
+}
+.glyphicon.glyphicon-minus {
+    font-size: 20px;
+    background: #ffba00;
+    color: #1e559e;
+    width: 20px;    
+}
+#twitter-widget-1 {
+    vertical-align: middle;
+}
+#twitter-widget-2 {
+    vertical-align: middle;
+}
+.fb-share-button {
+    vertical-align: middle;
+}
+.a2a_kit_size_28 {
+    vertical-align: middle;   
+}
+.share-link-lable {
+    color: white;
+    display: inline-block; 
+}
+
+.todays-details {
+    border: solid 2px white;
+    padding: 15px;
+    border-radius: 25px;
+}
+
+
+.todays-details h5{text-align: center; color: #fff; margin: 0; font-weight: 700; padding-bottom: 10px;}
+.todays-details div{text-align: center; color: #fff; margin: 0; font-weight: 600; line-height: 24px;}
+.todays-details div span{text-align: center; color: #ffba00; margin: 0; font-weight: 300;}
+.todays-details a{color: #ffba00; text-decoration: none;}
+.todays-details a:hover{text-decoration: none; color: #71a8f2;}
+.todays-details .hr-line {padding-bottom: 10px;}
+.todays-details .todays_highlight {font-size: 17px; line-height: 27px;}
+.todays-details .todays_tithi_highlight {font-size: 25px; line-height: 28px;}
+
+#celebrity_birthday {
+    display: none;
+}
+
+#t_festivals  {
+    display: none;
+}
+
+#t_birthdays {
+    display: none;
+}
+#gregorian_birthday_val {
+    color: #ffba00;
+}
+.cal-adhikMasa {
+    line-height: 42px;
+    text-align: left;
+}
+.todays_calendar {
+    float: right;
+}
+.todays_calendar_icon {
+    width: 30px;
+    height: 30px;
+}
+.todays_profile_pic {
+    width: 35px;
+    border-radius: 50%;
+    padding: 1px;
+}
+.todays_festivals_name {
+    background-color: dimgrey;
+}
+.todays_birthdays_a .todays_festivals_a {
+}
+.output_todays_profile_pic {
+    width: 50px;
+    border-radius: 50%;
+    padding: 1px;    
+}
+.loading_content {
+    text-align:center;
+    padding-top: 50px;
+    padding-left: 30px;
+}
+.save-birthday-top-btn {
+    background-color:#44c767;
+    border-radius:28px;
+    border:1px solid #18ab29;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:17px;
+    font-weight:bold;
+    padding:12px 20px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #2f6627;
+}
+.save-birthday-top-btn:hover {
+    background-color:#5cbf2a;
+    color: black;
+}
+.save-birthday-top-btn:active {
+    position:relative;
+    top:1px;
+}
+#query-count-frame {
+    color: white;
+}
+#twitter-widget-0{
+    vertical-align: middle;
+}
+#google_translate_element {
+    padding-bottom: 5px;
+
+}
+#birthRashi {
+    color: #ffba00;
+}
+.hinduRow {
+    display: none;
+}
+#lunarJanmaTithi {
+    color: #ffba00;
+}
+.fa-trash {
+    cursor: pointer;
+}
+.queryCount {
+    font-weight: bold;
+}
+.todays_festivals_name_viewed_liked {
+    background-color: white;
+    padding-left: 3px;
+}
+.viewed_liked_table th {
+    font-weight: bold;
+    text-align: center;
+    background-color: #ffba00;
+    color: white;
+}
+.viewed_liked_table tr {
+    background-color: white;
+    text-align: left;
+}
+.viewed_liked_table {
+    display: none;
+}

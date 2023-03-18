@@ -1,0 +1,28 @@
+@media (max-width: 991px){
+	body{font-size: 13px;}	
+	.timings{text-align: center;}
+	.timings article{padding-bottom: 40px;}
+	.timing-list li{padding: 0 0 20px;}
+	.timings .timing-calc{padding-top: 30px;}
+}
+
+@media (max-width: 767px){
+	body{font-size: 12px;}
+	h2{font-size: 2em;}
+	.wideColumn{padding-bottom: 40px;}
+	.banner{padding: 30px 0;}
+	.banner-form{padding: 0 15px;}
+	.banner-form label{text-align: left; padding: 0; line-height: 20px;}
+	.festivals{text-align: center;}
+	.festivals .btn{margin-top: 20px;}
+	#footer article{padding-bottom: 30px;}
+	.inner-page .banner ul li{font-size: 3em;}
+}
+
+@media (max-width: 560px){
+	.header-right .sharetext{display: none;}
+	.social-icons li a{height: 30px; width: 30px; line-height: 30px; font-size:20px;}
+	.add-to-calendar{font-size: 1em;}
+}
+
+

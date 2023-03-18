@@ -1,0 +1,13 @@
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #1B1212 ;
+   color: #337ab7;
+   text-align: center;
+}
+.sticky-footer-icon {
+	height: 47px;
+	cursor: pointer;
+}

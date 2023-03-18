@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+<head>
+<meta property="og:image" content="https://janmatithi.in/JTImage_fbshare.png">
+<meta property="og:url" content="https://www.janmatithi.in">
+<meta property="og:description" content="Celebrate your birthday with the Gods. Birthdays of Indian gods and saints are celebrated as per Indian Calendar. Find yours!">
+<meta property="og:title" content="Janmatithi - The Indian Calendar Birthday">
+<meta name="google-signin-client_id" content="935478683552-23si5fm0v580ren1rs2mjd23o6vd1kjg.apps.googleusercontent.com">
+<link rel="canonical" href="https://www.janmatithi.in/">
+<link rel="shortcut icon" href="favicons/.-5855-favicon.ico">
+
+<!-- float facebook like box start -->
+<!-- <script id="float_fb" src="//pic.sopili.net/pub/float_fb/widget.js" data-height="140" data-href="https://www.facebook.com/janmatithi/" async></script> -->
+<!-- float facebook like box end -->
+<link rel="icon" href="favicons/.-143-favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicons/.-2304-favicon.ico" type="image/x-icon">
+	<meta charset="utf-8">
+	<title>Janmatithi</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="shortcut icon" href="favicons/6742-images-favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/css-reset.css">	
+	<link rel="stylesheet" type="text/css" href="css/css-font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="css/css-bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/css-bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="css/css-style.css">
+	<link rel="stylesheet" type="text/css" href="css/css-media.css">
+<!--	<link rel="stylesheet" href="css/jquery.datepick.css" > -->
+	<link rel="stylesheet" href="css/css-redmond.datepick.css">
+	<link rel="stylesheet" href="css/css-upcoming_birthdays.css">
+	<link rel="stylesheet" href="css/css-sticky-button.css">
+ 	<link rel="stylesheet" href="css/css-sticky-footer.css">
+  <link rel="stylesheet" href="css/css-notification-switch.css">
+  <link rel="stylesheet" href="css/css-recent-birthdays-widget.css">
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-68228110-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	<script src="js/1.11.0-jquery.min.js"></script>
+	<script type="text/javascript" src="js/7314-js-jquery.plugin.js"></script> 
+	<script type="text/javascript" src="js/1513-js-jquery.datepick.js"></script>
+	<script type="text/javascript" src="js/409-js-bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/2608-js-modernizr.js"></script>
+	<script type="text/javascript" src="js/7889-js-respond.min.js"></script>
+  <script type="text/javascript" src="js/6429-js-moment.js"></script>
+	<script type="text/javascript" src="js/2936-js-general.js"></script>
+	<script type="text/javascript" src="js/6991-js-google-signin.js"></script>
+ 	<script type="text/javascript" src="js/3368-js-upcoming_birthdays.js"></script>
+  <script type="text/javascript" src="js/146-js-todays_tithi.js"></script>
+  <script type="text/javascript" src="js/5841-js-notification-switch.js"></script>
+  <script type="text/javascript" src="js/1515-js-recent-birthdays-widget.js"></script>
+  <script type="text/javascript" src="js/2984-js-most_viewed_liked_profiles.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			$('#bdate').datepick({
+					dateFormat: 'dd/mm/yyyy',
+					minDate: new Date(1800, 1 - 1, 31), 
+    			/*maxDate: new Date(2021, 1 - 1, 31),*/
+    			yearRange: 'c-149:c+1'});
+		});
+
+		$(document).ready(function() {
+			$.datepick.setDefaults({pickerClass: 'my-picker'});
+      $('#tz option[value="GMT' + moment(new Date()).format('Z') + '"]:last').prop('selected', true);
+
+			$('#inputForm').on('submit', function() {
+				time_string = $('#hour').val() + ":" + $('#minute').val() + ":" + $('#second').val();
+				$('#time').val(time_string);
+	        return validateForm(this);
+	    });
+
+	    manageSessionForLogin();
+      loadRecentBirthdays();
+      loadTodaysDetail();
+      loadTrendingProfiles("Birthday");
+      loadTrendingProfiles("Festival");
+      loadMostViewedProfiles("Birthday");
+      loadMostViewedProfiles("Festival");
+      loadMostLikedProfiles("Birthday");
+      loadMostLikedProfiles("Festival");
+		});
+
+		function checkDate(field) {
+		    var allowBlank = false;
+		    var minYear = 1000;
+		    var maxYear = (new Date()).getFullYear();
+
+		    var errorMsg = "";
+
+		    // regular expression to match required date format
+		    re = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+
+		    if(field.value != '') {
+		      if(regs = field.value.match(re)) {
+		        if(regs[1] < 1 || regs[1] > 31) {
+		          errorMsg = "Invalid value for day: " + regs[1];
+		        } else if(regs[2] < 1 || regs[2] > 12) {
+		          errorMsg = "Invalid value for month: " + regs[2];
+		        } else if(regs[3] < minYear/* || regs[3] > maxYear*/) {
+		          errorMsg = "Invalid value for year: " + regs[3] + " - must be between " + minYear + " and " + maxYear;
+		        }
+		      } else {
+		        errorMsg = "Invalid date format: " + field.value;
+		      }
+		    } else if(!allowBlank) {
+		      errorMsg = "Empty date not allowed!";
+		    }
+
+		    if(errorMsg != "") {
+		      $("#bdate").addClass('error');
+		   	  $('#bdate_error').html(errorMsg);
+		      field.focus();
+		      return false;
+		    }
+
+	    	return true;
+	  	}
+
+	  	function checkTime(field) {
+	  		var allowBlank = false;
+	    	var errorMsg = "";
+
+		    // regular expression to match required time format
+		    re = /^(\d{2}):(\d{2}):(\d{2})([ap]m)?$/;
+
+		    if(field.value != '') {
+		      if(regs = field.value.match(re)) {
+		        if(regs[4]) {
+		          // 12-hour time format with am/pm
+		          if(regs[1] < 1 || regs[1] > 12) {
+		            errorMsg = "Invalid value for hours: " + regs[1];
+		          }
+		        } else {
+		          // 24-hour time format
+		          if(regs[1] > 23) {
+		            errorMsg = "Invalid value for hours: " + regs[1];
+		          }
+		        }
+		        if(!errorMsg && regs[2] > 59) {
+		          errorMsg = "Invalid value for minutes: " + regs[2];
+		        }
+				if(!errorMsg && regs[3] > 59) {
+		          errorMsg = "Invalid value for seconds: " + regs[3];
+		        }
+
+		      } else {
+		        errorMsg = "Invalid time format: " + field.value;
+		      }
+		    } else if(!allowBlank) {
+		      errorMsg = "Empty time not allowed!";
+		    }
+
+		    if(errorMsg != "") {
+		      $('#time_error').html(errorMsg);
+		      field.focus();
+		      return false;
+		    }
+
+		    return true;
+	  	}
+
+	  	function checkYear(field) {
+		    var allowBlank = false;
+		    var minYear = 1002;
+		    var errorMsg = "";
+
+		    // regular expression to match required date format
+		    re = /^(\d{4})$/;
+
+		    if(field.value != '') {
+		      if(regs = field.value.match(re)) {
+				if(regs[1] < minYear || regs[1] > 3002) {
+		          errorMsg = "Invalid value for year: " + regs[1] + " - must be greater than " + minYear + " and less than " + 3002;
+		        }
+		      } else {
+		        errorMsg = "Invalid year format: " + field.value;
+		      }
+		    } else if(!allowBlank) {
+		      errorMsg = "Empty year not allowed!";
+		    }
+
+		    if(errorMsg != "") {
+		      $("#year").addClass('error');
+		      $('#year_error').html(errorMsg);
+		      field.focus();
+		      return false;
+		    }
+
+	    	return true;
+	  	}
+
+	  	function checkName(field) {
+	  		var allowBlank = false;
+		    var errorMsg = "";
+
+		    // regular expression to match required date format
+		    re = /^[a-zA-Z ]+$/;
+
+		    if(field.value != '') {
+		      if(!field.value.match(re)) {
+		        errorMsg = "Invalid name: " + field.value;
+		      }
+		    } else if(!allowBlank) {
+		      errorMsg = "Empty name not allowed!";
+		    }
+
+		    if(errorMsg != "") {
+		      $("#name").addClass('error');
+		      $('#name_error').html(errorMsg);
+		      field.focus();
+		      return false;
+		    }
+
+	    	return true;
+	  	}
+
+	  	function checkTimezone(field) {
+	  		var allowBlank = false;
+		    var errorMsg = "";
+
+		    if(field.value != '') {
+		      //if(field.value != 'IST' && field.value != 'GMT') {
+		      //  errorMsg = "Invalid timezone: " + field.value;
+		      //}
+		    } else if(!allowBlank) {
+		      errorMsg = "Empty timezone not allowed!";
+		    }
+
+		    if(errorMsg != "") {
+		      $('#tz_error').html(errorMsg);
+		      field.focus();
+		      return false;
+		    }
+
+	    	return true;  		
+	  	}
+
+		function validateForm(form) {
+			$('.error').each(function() {
+	    		$('#' + this.id).html("");
+			});
+
+		    if(!checkDate(form.bdate)) {
+		      return false;
+		    }
+		    if(!checkTime(form.time)) {
+		      return false;
+		    }
+		    if(!checkYear(form.year)) {
+		      return false;
+		    }
+		    if(!checkName(form.name)) {
+		      return false;
+		    }
+		    if(!checkTimezone(form.tz)) {
+		      return false;
+		    }
+
+		    return true;
+		}
+	</script>	
+	<!-- Place this tag in your head or just before your close body tag. -->
+	<script src="js/js-platform.js" async defer></script>
+</head>
+
+<body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=42877539229&autoLogAppEvents=1';
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>				
+
+	<div class="wrapper">
+		<!-- Start Header -->
+		<header id="header">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-xs-5 header-left">
+						<a href="index.html" title="" class="logo">
+							<img src="images/logoindic.png" alt="">
+						</a>
+					</div>
+					<div class="col-sm-6 col-xs-7 header-right">
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <div id="google_translate_element"></div>
+                <script type="text/javascript">
+                function googleTranslateElementInit() {
+                  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages : 'hi,ml,bn,ta,te,or,gu,pa,kn,en,mr', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+                </script>
+                <script type="text/javascript" src="js/translate_a-element.js"></script>
+
+                <div class="g-signin2" data-onsuccess="Google_signIn" data-onfailure="Google_signInError" data-theme="dark" data-width="90"></div>
+                <div class="login-message" style="display: none">Hello, <div id="logged-in-user-name" style="display:inline"></div> | <a href="#" onclick="javascript:signOut();">Logout</a></div>
+              </div>
+            </div>
+            <div class="spacer5"></div>
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <span class="sharetext">Share us on:</span>
+                <ul class="social-icons">
+                  <!-- Code to add whatsapp icon-->
+                  <li>
+                    <div class="a2a_kit a2a_kit_size_20 a2a_default_style" data-a2a-url="https://www.janmatithi.in" data-a2a-title="Janmatithi">
+                    <a class="a2a_button_whatsapp" href="indicbirthday.html"></a>
+                    </div>
+                    <script async src="js/6181-js-whatsapp.jquery.js"></script>
+                  </li>
+                  <!-- End Of Code to add whatsapp icon-->
+                  <li>
+                    <div class="fb-share-button" data-href="https://www.janmatithi.in" data-layout="button"></div>
+                  </li>
+                  <li>
+                    <div class="fb-like" data-href="https://www.facebook.com/janmatithi/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>              
+                  </li>
+                  <li>
+		    <a href="https://twitter.com/janmatithi?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @janmatithi</a><script async src="js/widgets.js" charset="utf-8"></script>
+                  </li>
+                  <li>
+                  <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                  </li>
+                  <li>
+                    <div class="g-plus" data-action="share" data-annotation="none" data-href="https://www.janmatithi.in"></div>
+                  </li>
+                </ul>              
+              </div>
+            </div>
+						<br>
+						<br>
+					</div>
+				</div>				
+			</div>				
+		</header>
+		<!-- End Header -->
+
+		<!-- Start Banner -->		
+		<section class="banner">
+			<div class="container">				
+				<h1 class="banner-heading">Find your Indian tithi birthday for any year with below inputs. <span>It also gives you the nearest festivals for your easy reference on standard indian luni-solar calenders.</span></h1>
+        <div class="text-center">
+          <h3 class="bannerHead" style="color:white">Your Indic Birthday - Janmatithi</h3>
+          <p class="bannerHead bannerHeadText" style="color:white">
+	  Find your <b style="color:gold; font-style:italic;"> Birth Tithi </b> - IndicBirthday for any year with below inputs. <span>It also gives you the nearest festivals for your easy reference on standard indian luni-solar calenders.
+            <br>
+            Sign in to save indic birthdays for your friends and family members. 
+					  <br>
+            Share if you like us.
+          </span></p>
+	  <p style="color:gold">
+          <span>When the Sun and Moon form the same relation every year with the stars is your indic birthday,</span>            
+	  <em>"Find your IndicBirthday, save and share indicbirthdays of family and friends. Check upcoming birthdays and festival calendar."</em>
+          <span font-size:>Total Indic Birthday Queries made so far <em class="queryCount"></em>.</span>            
+	  </p>
+          <div class="col-sm-12 col-md-offset-3 col-md-6 recent-birthdays-widget">
+            <div class="ajax_loader_recent_birthdays"><i class="fa fa-spinner fa-pulse fa-3x fa-fw" aria-hidden="true"></i><div class="loading_content">Fetching Recent Birthdays ... </div></div>
+            <div class="banner-form-outer recent-birthdays-widget-details" style="display: none">
+              <h5>
+                  Recent Birthdays
+                  <span class="todays_calendar"><a href="#" onclick="javascript:openNav();" target="_blank"><img class="todays_calendar_icon" src="images/images-birthday.gif" width="42" height="42" title="Show all Upcoming Birthdays"></a></span>
+              </h5>
+              <div class="hr-line"></div>
+              <div class="recent-birthdays-data"></div>
+            </div>
+          </div>          
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+    				<div class="banner-form-outer">
+    					<form class="banner-form" action="/output.html" method="get" id="inputForm">
+    						<div class="form-group row">								
+    							<label class="col-sm-5 col-xs-12">Your Date of Birth (dd/mm/yyyy)</label>
+    							<div class="col-sm-5 col-xs-12 col-md-6">
+    								<input type="text" id="bdate" name="bdate" placeholder="25/12/1992">
+    							</div>
+    						</div>
+    						<input type="hidden" id="PAnth" name="PAnth" value="0">
+    						<div class="form-group row">								
+    							<label class="col-sm-5 col-xs-12">Time of Birth (HH:MM:SS)</label>
+    							<input type="hidden" name="time" id="time">
+    							<div class="form-group col-xs-4 col-sm-4 col-md-2 time-group">
+    							 	<select id="hour" class="form-control time_group" style="width:70px;">
+    							  		<option value="11" selected>11</option>
+    							  		<option value="00">00</option>
+    							  		<option value="01">01</option>
+    							  		<option value="02">02</option>
+    							  		<option value="03">03</option>
+    							  		<option value="04">04</option>
+    							  		<option value="05">05</option>
+    							  		<option value="06">06</option>
+    							  		<option value="07">07</option>
+    							  		<option value="08">08</option>
+    							  		<option value="09">09</option>
+    							  		<option value="10">10</option>
+    							  		<option value="11">11</option>
+    							  		<option value="12">12</option>
+    							  		<option value="13">13</option>
+    							  		<option value="14">14</option>
+    							  		<option value="15">15</option>
+    							  		<option value="16">16</option>
+    							  		<option value="17">17</option>
+    							  		<option value="18">18</option>
+    							  		<option value="19">19</option>
+    							  		<option value="20">20</option>
+    							  		<option value="21">21</option>
+    							  		<option value="22">22</option>
+    							  		<option value="23">23</option>
+    								</select>	
+    							</div>
+    							<div class="form-group col-xs-4 col-sm-4 col-md-2">
+    							 	<select id="minute" class="form-control time_group" style="width:70px;">
+    							  		<option value="00" selected>00</option>
+    							  		<option value="01">01</option>
+    							  		<option value="02">02</option>
+    							  		<option value="03">03</option>
+    							  		<option value="04">04</option>
+    							  		<option value="05">05</option>
+    							  		<option value="06">06</option>
+    							  		<option value="07">07</option>
+    							  		<option value="08">08</option>
+    							  		<option value="09">09</option>
+    							  		<option value="10">10</option>
+    							  		<option value="11">11</option>
+    							  		<option value="12">12</option>
+    							  		<option value="13">13</option>
+    							  		<option value="14">14</option>
+    							  		<option value="15">15</option>
+    							  		<option value="16">16</option>
+    							  		<option value="17">17</option>
+    							  		<option value="18">18</option>
+    							  		<option value="19">19</option>
+    							  		<option value="20">20</option>
+    							  		<option value="21">21</option>
+    							  		<option value="22">22</option>
+    							  		<option value="23">23</option>
+    							  		<option value="24">24</option>  		
+    							  		<option value="25">25</option>
+    							  		<option value="26">26</option>
+    							  		<option value="27">27</option>
+    							  		<option value="28">28</option>
+    							  		<option value="29">29</option>
+    							  		<option value="30">30</option>
+    							  		<option value="31">31</option>
+    							  		<option value="32">32</option>
+    							  		<option value="33">33</option>
+    							  		<option value="34">34</option>
+    							  		<option value="35">35</option>
+    							  		<option value="36">36</option>
+    							  		<option value="37">37</option>
+    							  		<option value="38">38</option>
+    							  		<option value="39">39</option>
+    							  		<option value="40">40</option>
+    							  		<option value="41">41</option>
+    							  		<option value="42">42</option>
+    							  		<option value="43">43</option>
+    							  		<option value="44">44</option>
+    							  		<option value="45">45</option>
+    							  		<option value="46">46</option>
+    							  		<option value="47">47</option>
+    							  		<option value="48">48</option>
+    							  		<option value="49">49</option>
+    							  		<option value="50">50</option>
+    							  		<option value="51">51</option>
+    							  		<option value="52">52</option>
+    							  		<option value="53">53</option>
+    							  		<option value="54">54</option>
+    							  		<option value="55">55</option>
+    							  		<option value="56">56</option>
+    							  		<option value="57">57</option>
+    							  		<option value="58">58</option>
+    							  		<option value="59">59</option>
+    								</select>
+    							</div>
+    							<div class="form-group col-xs-4 col-sm-4 col-md-2">
+    							 	<select id="second" class="form-control time_group" style="width:70px;">
+    							  		<option value="00" selected>00</option>
+    							  		<option value="01">01</option>
+    							  		<option value="02">02</option>
+    							  		<option value="03">03</option>
+    							  		<option value="04">04</option>
+    							  		<option value="05">05</option>
+    							  		<option value="06">06</option>
+    							  		<option value="07">07</option>
+    							  		<option value="08">08</option>
+    							  		<option value="09">09</option>
+    							  		<option value="10">10</option>
+    							  		<option value="11">11</option>
+    							  		<option value="12">12</option>
+    							  		<option value="13">13</option>
+    							  		<option value="14">14</option>
+    							  		<option value="15">15</option>
+    							  		<option value="16">16</option>
+    							  		<option value="17">17</option>
+    							  		<option value="18">18</option>
+    							  		<option value="19">19</option>
+    							  		<option value="20">20</option>
+    							  		<option value="21">21</option>
+    							  		<option value="22">22</option>
+    							  		<option value="23">23</option>
+    							  		<option value="24">24</option>  		
+    							  		<option value="25">25</option>
+    							  		<option value="26">26</option>
+    							  		<option value="27">27</option>
+    							  		<option value="28">28</option>
+    							  		<option value="29">29</option>
+    							  		<option value="30">30</option>
+    							  		<option value="31">31</option>
+    							  		<option value="32">32</option>
+    							  		<option value="33">33</option>
+    							  		<option value="34">34</option>
+    							  		<option value="35">35</option>
+    							  		<option value="36">36</option>
+    							  		<option value="37">37</option>
+    							  		<option value="38">38</option>
+    							  		<option value="39">39</option>
+    							  		<option value="40">40</option>
+    							  		<option value="41">41</option>
+    							  		<option value="42">42</option>
+    							  		<option value="43">43</option>
+    							  		<option value="44">44</option>
+    							  		<option value="45">45</option>
+    							  		<option value="46">46</option>
+    							  		<option value="47">47</option>
+    							  		<option value="48">48</option>
+    							  		<option value="49">49</option>
+    							  		<option value="50">50</option>
+    							  		<option value="51">51</option>
+    							  		<option value="52">52</option>
+    							  		<option value="53">53</option>
+    							  		<option value="54">54</option>
+    							  		<option value="55">55</option>
+    							  		<option value="56">56</option>
+    							  		<option value="57">57</option>
+    							  		<option value="58">58</option>
+    							  		<option value="59">59</option>
+    								</select>
+    							</div>							
+    						</div>
+    						<!--
+    						<div class="form-group row">
+    							<label class="col-sm-5 col-xs-12">Place of Birth</label>
+    							<div class="col-sm-5 col-xs-12 col-md-3">
+    								<input type="text" id="bplace" name="bplace" placeholder="enter city e.g. bangalore">
+    							</div>
+    						</div>
+    						-->
+    						<div class="form-group row">
+    							<label class="col-sm-5 col-xs-12">Calculate JanmaTithi for Year</label>
+    							<div class="col-sm-5 col-xs-12 col-md-6">
+    								<input type="text" id="year" name="year" value="2023" placeholder="YYYY e.g. 2023">
+    							</div>
+    						</div>
+    						<div class="form-group row">
+    							<label class="col-sm-5 col-xs-12">Your Name</label>
+    							<div class="col-sm-5 col-xs-12 col-md-6">
+    								<input type="text" id="name" name="name" value="" onfocus="Enter your name here" placeholder="your name">
+    							</div>
+    						</div>
+    						<div class="form-group row">
+    							<label class="col-sm-5 col-xs-12">Birth Timezone</label>
+    							<div class="col-sm-5 col-xs-12 col-md-6">						
+    								<select name="tz" id="tz" class="form-control time_group">
+    									<option timezoneid="1" value="GMT-12:00" usedaylighttime="0">(GMT-12:00) International Date Line West</option>
+    									<option timezoneid="2" value="GMT-11:00" usedaylighttime="0">(GMT-11:00) Midway Island, Samoa</option>
+    									<option timezoneid="3" value="GMT-10:00" usedaylighttime="0">(GMT-10:00) Hawaii</option>
+    									<option timezoneid="4" value="GMT-09:00" usedaylighttime="1">(GMT-09:00) Alaska</option>
+    									<option timezoneid="5" value="GMT-08:00" usedaylighttime="1">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+    									<option timezoneid="6" value="GMT-08:00" usedaylighttime="1">(GMT-08:00) Tijuana, Baja California</option>
+    									<option timezoneid="7" value="GMT-07:00" usedaylighttime="0">(GMT-07:00) Arizona</option>
+    									<option timezoneid="8" value="GMT-07:00" usedaylighttime="1">(GMT-07:00) Chihuahua, La Paz, Mazatlan</option>
+    									<option timezoneid="9" value="GMT-07:00" usedaylighttime="1">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+    									<option timezoneid="10" value="GMT-06:00" usedaylighttime="0">(GMT-06:00) Central America</option>
+    									<option timezoneid="11" value="GMT-06:00" usedaylighttime="1">(GMT-06:00) Central Time (US &amp; Canada)</option>
+    									<option timezoneid="12" value="GMT-06:00" usedaylighttime="1">(GMT-06:00) Guadalajara, Mexico City, Monterrey</option>
+    									<option timezoneid="13" value="GMT-06:00" usedaylighttime="0">(GMT-06:00) Saskatchewan</option>
+    									<option timezoneid="14" value="GMT-05:00" usedaylighttime="0">(GMT-05:00) Bogota, Lima, Quito, Rio Branco</option>
+    									<option timezoneid="15" value="GMT-05:00" usedaylighttime="1">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+    									<option timezoneid="16" value="GMT-05:00" usedaylighttime="1">(GMT-05:00) Indiana (East)</option>
+    									<option timezoneid="17" value="GMT-04:00" usedaylighttime="1">(GMT-04:00) Atlantic Time (Canada)</option>
+    									<option timezoneid="18" value="GMT-04:00" usedaylighttime="0">(GMT-04:00) Caracas, La Paz</option>
+    									<option timezoneid="19" value="GMT-04:00" usedaylighttime="0">(GMT-04:00) Manaus</option>
+    									<option timezoneid="20" value="GMT-04:00" usedaylighttime="1">(GMT-04:00) Santiago</option>
+    									<option timezoneid="21" value="GMT-03:30" usedaylighttime="1">(GMT-03:30) Newfoundland</option>
+    									<option timezoneid="22" value="GMT-03:00" usedaylighttime="1">(GMT-03:00) Brasilia</option>
+    									<option timezoneid="23" value="GMT-03:00" usedaylighttime="0">(GMT-03:00) Buenos Aires, Georgetown</option>
+    									<option timezoneid="24" value="GMT-03:00" usedaylighttime="1">(GMT-03:00) Greenland</option>
+    									<option timezoneid="25" value="GMT-03:00" usedaylighttime="1">(GMT-03:00) Montevideo</option>
+    									<option timezoneid="26" value="GMT-02:00" usedaylighttime="1">(GMT-02:00) Mid-Atlantic</option>
+    									<option timezoneid="27" value="GMT-01:00" usedaylighttime="0">(GMT-01:00) Cape Verde Is.</option>
+    									<option timezoneid="28" value="GMT-01:00" usedaylighttime="1">(GMT-01:00) Azores</option>
+    									<option timezoneid="29" value="GMT+00:00" usedaylighttime="0">(GMT+00:00) Casablanca, Monrovia, Reykjavik</option>
+    									<option timezoneid="30" value="GMT+00:00" usedaylighttime="1">(GMT+00:00) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London</option>
+    									<option timezoneid="31" value="GMT+01:00" usedaylighttime="1">(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
+    									<option timezoneid="32" value="GMT+01:00" usedaylighttime="1">(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
+    									<option timezoneid="33" value="GMT+01:00" usedaylighttime="1">(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</option>
+    									<option timezoneid="34" value="GMT+01:00" usedaylighttime="1">(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb</option>
+    									<option timezoneid="35" value="GMT+01:00" usedaylighttime="1">(GMT+01:00) West Central Africa</option>
+    									<option timezoneid="36" value="GMT+02:00" usedaylighttime="1">(GMT+02:00) Amman</option>
+    									<option timezoneid="37" value="GMT+02:00" usedaylighttime="1">(GMT+02:00) Athens, Bucharest, Istanbul</option>
+    									<option timezoneid="38" value="GMT+02:00" usedaylighttime="1">(GMT+02:00) Beirut</option>
+    									<option timezoneid="39" value="GMT+02:00" usedaylighttime="1">(GMT+02:00) Cairo</option>
+    									<option timezoneid="40" value="GMT+02:00" usedaylighttime="0">(GMT+02:00) Harare, Pretoria</option>
+    									<option timezoneid="41" value="GMT+02:00" usedaylighttime="1">(GMT+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius</option>
+    									<option timezoneid="42" value="GMT+02:00" usedaylighttime="1">(GMT+02:00) Jerusalem</option>
+    									<option timezoneid="43" value="GMT+02:00" usedaylighttime="1">(GMT+02:00) Minsk</option>
+    									<option timezoneid="44" value="GMT+02:00" usedaylighttime="1">(GMT+02:00) Windhoek</option>
+    									<option timezoneid="45" value="GMT+03:00" usedaylighttime="0">(GMT+03:00) Kuwait, Riyadh, Baghdad</option>
+    									<option timezoneid="46" value="GMT+03:00" usedaylighttime="1">(GMT+03:00) Moscow, St. Petersburg, Volgograd</option>
+    									<option timezoneid="47" value="GMT+03:00" usedaylighttime="0">(GMT+03:00) Nairobi</option>
+    									<option timezoneid="48" value="GMT+03:00" usedaylighttime="0">(GMT+03:00) Tbilisi</option>
+    									<option timezoneid="49" value="GMT+03:30" usedaylighttime="1">(GMT+03:30) Tehran</option>
+    									<option timezoneid="50" value="GMT+04:00" usedaylighttime="0">(GMT+04:00) Abu Dhabi, Muscat</option>
+    									<option timezoneid="51" value="GMT+04:00" usedaylighttime="1">(GMT+04:00) Baku</option>
+    									<option timezoneid="52" value="GMT+04:00" usedaylighttime="1">(GMT+04:00) Yerevan</option>
+    									<option timezoneid="53" value="GMT+04:30" usedaylighttime="0">(GMT+04:30) Kabul</option>
+    									<option timezoneid="54" value="GMT+05:00" usedaylighttime="1">(GMT+05:00) Yekaterinburg</option>
+    									<option timezoneid="55" value="GMT+05:00" usedaylighttime="0">(GMT+05:00) Islamabad, Karachi, Tashkent</option>
+    									<option timezoneid="56" value="GMT+05:30" usedaylighttime="0">(GMT+05:30) Sri Jayawardenapura</option>
+    									<option timezoneid="57" value="GMT+05:30" usedaylighttime="0">(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
+    									<option timezoneid="58" value="GMT+05:45" usedaylighttime="0">(GMT+05:45) Kathmandu</option>
+    									<option timezoneid="59" value="GMT+06:00" usedaylighttime="1">(GMT+06:00) Almaty, Novosibirsk</option>
+    									<option timezoneid="60" value="GMT+06:00" usedaylighttime="0">(GMT+06:00) Astana, Dhaka</option>
+    									<option timezoneid="61" value="GMT+06:30" usedaylighttime="0">(GMT+06:30) Yangon (Rangoon)</option>
+    									<option timezoneid="62" value="GMT+07:00" usedaylighttime="0">(GMT+07:00) Bangkok, Hanoi, Jakarta</option>
+    									<option timezoneid="63" value="GMT+07:00" usedaylighttime="1">(GMT+07:00) Krasnoyarsk</option>
+    									<option timezoneid="64" value="GMT+08:00" usedaylighttime="0">(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
+    									<option timezoneid="65" value="GMT+08:00" usedaylighttime="0">(GMT+08:00) Kuala Lumpur, Singapore</option>
+    									<option timezoneid="66" value="GMT+08:00" usedaylighttime="0">(GMT+08:00) Irkutsk, Ulaan Bataar</option>
+    									<option timezoneid="67" value="GMT+08:00" usedaylighttime="0">(GMT+08:00) Perth</option>
+    									<option timezoneid="68" value="GMT+08:00" usedaylighttime="0">(GMT+08:00) Taipei</option>
+    									<option timezoneid="69" value="GMT+09:00" usedaylighttime="0">(GMT+09:00) Osaka, Sapporo, Tokyo</option>
+    									<option timezoneid="70" value="GMT+09:00" usedaylighttime="0">(GMT+09:00) Seoul</option>
+    									<option timezoneid="71" value="GMT+09:00" usedaylighttime="1">(GMT+09:00) Yakutsk</option>
+    									<option timezoneid="72" value="GMT+09:30" usedaylighttime="0">(GMT+09:30) Adelaide</option>
+    									<option timezoneid="73" value="GMT+09:30" usedaylighttime="0">(GMT+09:30) Darwin</option>
+    									<option timezoneid="74" value="GMT+10:00" usedaylighttime="0">(GMT+10:00) Brisbane</option>
+    									<option timezoneid="75" value="GMT+10:00" usedaylighttime="1">(GMT+10:00) Canberra, Melbourne, Sydney</option>
+    									<option timezoneid="76" value="GMT+10:00" usedaylighttime="1">(GMT+10:00) Hobart</option>
+    									<option timezoneid="77" value="GMT+10:00" usedaylighttime="0">(GMT+10:00) Guam, Port Moresby</option>
+    									<option timezoneid="78" value="GMT+10:00" usedaylighttime="1">(GMT+10:00) Vladivostok</option>
+    									<option timezoneid="79" value="GMT+11:00" usedaylighttime="1">(GMT+11:00) Magadan, Solomon Is., New Caledonia</option>
+    									<option timezoneid="80" value="GMT+12:00" usedaylighttime="1">(GMT+12:00) Auckland, Wellington</option>
+    									<option timezoneid="81" value="GMT+12:00" usedaylighttime="0">(GMT+12:00) Fiji, Kamchatka, Marshall Is.</option>
+    									<option timezoneid="82" value="GMT+13:00" usedaylighttime="0">(GMT+13:00) Nuku'alofa</option>
+    								</select>									
+    							</div>
+    						</div>
+    						<div class="form-group row">
+    							<div class="col-sm-3 col-sm-offset-5">
+    								<button type="submit" class="btn btn-default submit-btn"><span>GET JanmaTithi</span></button>
+    							</div>
+    						</div>
+    					</form>
+    				</div>
+          </div>
+          <div class="col-md-6">
+            <div class="ajax_loader"><i class="fa fa-spinner fa-pulse fa-3x fa-fw" aria-hidden="true"></i><div class="loading_content">Fetching Today's Tithi Date ... </div></div>
+            <div class="banner-form-outer todays-details" style="display: none">
+              <h5>
+                  Today's Tithi Date
+                  <span class="todays_calendar"><a href="indicbirthday.html" target="_blank" class="cal_short_url"><img class="todays_calendar_icon" src="images/images-calendar.png" width="42" height="42" title="Check today's tithi on Calendar"></a></span>
+              </h5>
+              <div class="hr-line"></div>
+              <div class="todays_tithi_highlight"><span id="today_tithi"></span></div>
+              <div class="todays_highlight">Today's Date <span id="today_date"></span></div>
+              <div class="todays_highlight">Nakshatra <span id="today_nakshatra"></span></div>
+              <div id="t_festivals">Festivals <span id="today_festivals"></span></div>
+              <div id="t_birthdays">Birthdays <span id="today_birthdays"></span></div>
+              <div>Starts <span id="today_tithi_timing_starts"></span></div>
+              <div>Ends <span id="today_tithi_timing_ends"></span></div>
+              <div>Lunar Month <span id="today_lunar_month"></span> begins <span id="today_lunar_month_begins"></span></div>
+              <div>Sun Rise timing <span id="today_sunrise"></span></div>
+              <div>Nakshatra timing Starts <span id="today_nakshatra_starts"></span></div>
+              <div>Nakshatra timing Ends <span id="today_nakshatra_ends"></span></div>
+              <div>Details for Tithi today at <a href="indicbirthday.html" target="_blank" id="sunrise_link">sunrise</a>, <a href="indicbirthday.html" target="_blank" id="current_time_link">current time</a></div>
+              <div>Check today's tithi on <a href="indicbirthday.html" target="_blank" class="cal_short_url">calendar</a></div>
+            </div>
+          </div>
+
+        </div>
+			</div>
+		</section>
+		<!-- End Banner -->	
+
+
+    <!-- Start Jumbotron -->
+    <section class="jumbotron">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+              <table id="trending_Birthday" class="table table-bordered viewed_liked_table" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>Trending Profiles</th>
+                  </tr>
+                </thead>
+                <tbody>         
+                </tbody>
+              </table>
+            </div>  
+          </div>
+          <div class="col-md-2 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+              <table id="trending_Festival" class="table table-bordered viewed_liked_table" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>Trending Festivals</th>
+                  </tr>
+                </thead>
+                <tbody>         
+                </tbody>
+              </table>
+            </div>  
+          </div>
+          <div class="col-md-2 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+              <table id="most_viewed_Birthday" class="table table-bordered viewed_liked_table" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>Top Viewed Profiles</th>
+                  </tr>
+                </thead>
+                <tbody>         
+                </tbody>
+              </table>
+            </div>  
+          </div>
+          <div class="col-md-2 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+              <table id="most_viewed_Festival" class="table table-bordered viewed_liked_table" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>Top Viewed Festivals</th>
+                  </tr>
+                </thead>
+                <tbody>         
+                </tbody>
+              </table>
+            </div>  
+          </div>
+          <div class="col-md-2 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+              <table id="most_liked_Birthday" class="table table-bordered viewed_liked_table" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>Top Liked Profiles</th>
+                  </tr>
+                </thead>
+                <tbody>         
+                </tbody>
+              </table>
+            </div>  
+          </div>
+          <div class="col-md-2 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+              <table id="most_liked_Festival" class="table table-bordered viewed_liked_table" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>Top Liked Festivals</th>
+                  </tr>
+                </thead>
+                <tbody>         
+                </tbody>
+              </table>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Jumbotron -->
+
+		<!-- Start Jumbotron -->
+		<section class="jumbotron">
+			<div class="container">
+		        <h4>
+				  <span>
+					<a href="indian-festivals.html" class="textInline">See all Indian Calendar Festivals&nbsp; 
+					</a> 
+				  </span>
+  <span><a href="https://janmatithi.in/index-tithi.html">Check Janmatithi and Nakshatra with Hindu Calendar inputs </a> </span>
+		        </h4>
+          <span>Total Janmatithi Queries made so far <em class="queryCount"></em>.</span>            
+			</div>
+		</section>
+		<!-- End Jumbotron -->
+
+
+		<!-- Start Content -->
+		<div class="about-content">
+			<div class="container">
+				<div class="row">
+					<section class="col-md-9 col-sm-8 wideColumn">
+						<h2>About Janmatithi.in</h2>
+						<p>Hindus do make it a point to celebrate <a href="#" title="Krishna Janmastami">Krishna Janmastami</a> in the "month of Shravana Ashtami tithi Krishna paksha". The birth of Rama is celebrated on "Navami Tithi during Shukla Paksha of Chaitra month" as <a href="#" title="Rama Navami">Rama Navami</a>. These and many other revered Saints' Birthdays are celebrated as per their Tithi.</p>
+						<p>The calculation of Tithi birthday as per Hindu Lunar calender has been our tradition. But, when it comes to our own birthdays we are not much aware of our Hindu Lunar Tithi birthdays. This website is an effort to encourage more Indians to celebrate birthdays based on our tradition. Mapping festivals to the tithi dates also helps us track our birthdays by referring to any Calenders in our homes. Festival references have been given from websites like <a href="https://drikPanchang.com" title="DrikPanchang">DrikPanchang</a> which is a wonderful source of information. <a href="#" title="Vivah Panchami">Vivah Panchami</a> celebrated on Panchami, Margashirsha, Shukla Paksha is the wedding anniversary of Shri Rama and Devi Sita. Similar Tithi Calculation can be done for Wedding Anniversary as well.</p>
+<p>Send your feedback to ejanmatithi@gmail.com</p>
+<div class="fb-page" data-href="https://www.facebook.com/janmatithi/" data-tabs="timeline" data-width="500" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/janmatithi/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/janmatithi/">JanmaTithi - Your Indic Birthday</a></blockquote></div>
+						<a href="http://janmatithi.blogspot.com/2017/08/janmatithi-the-indian-birthday.html" title="Read futher Click here" class="page-link">Read futher Click here </a>
+					</section>
+					<aside class="col-md-3 col-sm-4 narrowColumn">
+						<h2>References</h2>
+						<ul class="default-listing">
+							<li><a href="https://www.youtube.com/watch?v=N2yvLbHDaZA&amp;t" title="Watch excerpts of talks on Janmatithi">Watch excerpts of talks on Janmatithi</a></li>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/N2yvLbHDaZA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+							<li><a href="https://www.vaidicpujas.org/" title="Vedic Janmatithi with " art of living>Vedic Janmatithi with "Art of Living"</a></li>
+							<li><a href="https://www.artofliving.org/" title="www.artofliving.org/">www.artofliving.org/</a></li>
+							<li><a href="https://www.drikpanchang.com" title="www.drikpanchang.com">www.drikpanchang.com</a></li>
+							<li><a href="https://www.hindujagruti.org/hinduism/knowledge/article/why-should-birthday-be-celebrated-as-per-hindu-lunar-calendar.html" title="HinduJagruti Website">HinduJagruti Website</a></li>
+							<li><a href="https://www.infinityfoundation.com/mandala/t_es/t_es_raju_monsoon.htm" title="Lunar Calendar and Monsoon\">Lunar Calendar and Monsoon</a></li>
+						</ul>
+					</aside>
+				</div>
+				<div class="row">
+					<div class="fb-comments" data-href="https://www.janmatithi.in/" data-width="100%" data-numposts="10"></div>
+				</div>
+			</div>
+		</div>
+		<!-- End Content -->
+
+	</div>
+
+    <div class="footer">
+      <img class="sticky-footer-icon" src="images/images-upcoming-birthday-footer.png" onclick="javascript:openNav();">
+      <img class="sticky-footer-icon monthly-calendar" src="images/images-monthly-calendar-footer.png" onclick="window.open('/calendar.html', '_blank');">
+      <img class="sticky-footer-icon" src="images/images-indian-festivals-footer.png" onclick="window.open('/indian-festivals.html', '_blank');">
+      <img class="sticky-footer-icon" src="images/images-celebrity-birthdays-footer.png" onclick="window.open('/personality-birthdays.html', '_blank');">
+      <img class="sticky-footer-icon" src="images/images-today-tithi-footer.png" onclick="window.location.href = '/'">
+    </div>
+
+	<script type="text/javascript" src="js/1054-js-retina.js"></script>
+	<div id="mySidenav" class="sidenav">
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  	<h3>Upcoming Birthdays</h3>
+  	<div class="message"></div>
+    <div class="email-reminder-switch">
+      <label class="email-reminder-switch-label">Email Reminder </label>
+      <label class="switch">
+        <input type="checkbox" id="togBtn" checked>
+        <div class="slider round">
+          <span class="on">On</span>
+          <span class="off">Off</span>
+        </div>
+      </label> 
+    </div>
+    
+    <table class="table table-hover" id="upcoming-birthdays-result-table">
+	    <thead>
+	      <tr>
+	      	<th>#</th>
+	        <th>Name</th>
+          <th>Celebrate on</th>        
+	        <th>Indian Tithi</th>
+          <th>English DoB</th>        
+	        <th>Detail</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    </tbody>
+	  </table>
+	</div>
+  <div class="sticky-container-home">      
+    <ul class="sticky">         
+      <li>              
+        <img src="images/images-calendar.png" width="42" height="42">             
+        <p><a href="indicbirthday.html" target="_blank" class="cal_short_url">Check on <br>Calendar!</a></p>         
+      </li>     
+    </ul> 
+  </div>  
+	<div class="sticky-container">
+	    <ul class="sticky">
+	    	<img src="images/images-new.gif" width="38" height="12">
+	        <li>
+	            <img src="images/bcake.png" onclick="javascript:openNav();" width="42" height="42">
+	            <p><a href="#" onclick="javascript:openNav();">Upcoming <br>Birthdays!</a></p>
+	        </li>
+	    </ul>
+	</div>	
+  <div class="sticky-container-survey">      
+    <ul class="sticky">         
+      <li>              
+        <img src="images/images-sticky-feedback.png" width="42" height="42">             
+        <p><a href="https://docs.google.com/forms/d/1wBCUyvNsX0V-0ShLYeq3gTd8kd4_crADZU5t4_Ze5wc/viewform?edit_requested=true" target="_blank" class="">Leave us a <br>Feedback!</a></p>         
+      </li>     
+    </ul> 
+  </div>  
+</body>
+</html>
